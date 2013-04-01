@@ -36,6 +36,11 @@
  *
  * @section history_sec History
  *
+ * @par Ver 0.2.0: March 31, 2013
+ * @li Added #to_array function
+ * @li Changed specification of vector capacity
+ * @li Changed #vector_remove_internal to static (bug fix)
+ *
  * @par Ver 0.1.0: March 29, 2013
  * @li First release.
  */
@@ -87,7 +92,8 @@ static void *vector_alloc(void *ptr, size_t size);
 /**
  * Create a new vector.
  *
- * @param [in] capacity capacity of a new vector (this can be zero)
+ * @param [in] capacity capacity of a new vector.
+ * vector capacity is one if specified capacity is zero
  * @param [in] capacity_increment the amount by which the capacity of the vector
  * is automatically incremented when its size becomes greater than its capacity.
  * If the capacity_increment is equal to zero, the capacity of the vector is
@@ -224,6 +230,28 @@ static void *vector_alloc(void *ptr, size_t size);
 #define vector_clear(v) vector_clear_internal(v)
 
 /**
+ * Returns an array containing all of the elements in specified vector in the
+ * correct order.
+ *
+ * Element that position is vector size is always invalid value. For example,
+ * the following sample code is valid.
+ *
+ * @code
+ * vector_init(unsigned char, '\0');
+ * vector *v = vector_create(3, 1);
+ * vector_add(v, 'a');
+ * vector_add(v, 'b');
+ * vector_add(v, 'c');
+ * printf("%s\n", vector_to_array(v));
+ * @endcode
+ *
+ * @param [in] v specified vector
+ * @return an array containing all of the elements in this collection, or NULL
+ * if systems does not enough memory
+ */
+#define vector_to_array(v) vector_to_array_internal(v)
+
+/**
  * Initialize functions of specified type vector.
  *
  * You have to write in your source code like the following:
@@ -260,7 +288,7 @@ static void *vector_alloc(void *ptr, size_t size);
 			v = (vector *) vector_alloc(NULL, sizeof(vector)); \
 			if (v != NULL) { \
 				v->size = 0; \
-				v->capacity = 0; \
+				v->capacity = 1; \
 				v->capacity_increment = capacity_increment; \
 				v->elements = NULL; \
 				vector_alloc_internal(v, capacity, capacity_increment); \
@@ -272,7 +300,9 @@ static void *vector_alloc(void *ptr, size_t size);
 				for (i = v->capacity; i < capacity; i++) { \
 					v->elements[i] = invalid; \
 				} \
-				v->capacity = capacity; \
+				if (capacity != 0) { \
+					v->capacity = capacity; \
+				} \
 			} else { \
 				v = NULL; \
 			} \
@@ -282,7 +312,7 @@ static void *vector_alloc(void *ptr, size_t size);
 	\
 	static int vector_insert_internal(vector *v, size_t index, type element) { \
 		int result = 0; \
-		if (v->size < v->capacity) { \
+		if (v->size < v->capacity - 1) { \
 			if (element != invalid) { \
 				size_t i; \
 				for (i = v->size; i > index; i--) { \
@@ -298,9 +328,6 @@ static void *vector_alloc(void *ptr, size_t size);
 				new_capacity = v->capacity + v->capacity_increment; \
 			} else { \
 				new_capacity = v->capacity * 2; \
-				if (new_capacity == 0) { \
-					new_capacity = 1; \
-				} \
 			} \
 			if (vector_alloc_internal(v, new_capacity, v->capacity_increment)) { \
 				result = vector_insert_internal(v, index, element); \
@@ -309,7 +336,7 @@ static void *vector_alloc(void *ptr, size_t size);
 		return result; \
 	} \
 	\
-	type vector_remove_internal(vector *v, size_t index) { \
+	static type vector_remove_internal(vector *v, size_t index) { \
 		type element = v->elements[index]; \
 		size_t i; \
 		for (i = index + 1; i < v->size; i++) { \
@@ -334,6 +361,10 @@ static void *vector_alloc(void *ptr, size_t size);
 		while (v->size) { \
 			v->elements[--(v->size)] = invalid; \
 		} \
+	} \
+	\
+	static const type *vector_to_array_internal(vector *v) { \
+		return (const type *) v->elements; \
 	}
 
 #endif

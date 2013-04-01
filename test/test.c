@@ -18,16 +18,16 @@ static void *vector_alloc(void *ptr, size_t size) {
 	return realloc(ptr, size);
 }
 
-void test_create_01() {
+static void test_create_01() {
 	vector *v = vector_create(0, 1);
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(0, vector_capacity(v));
 	vector_destroy(v);
 }
 
-void test_create_02() {
+static void test_create_02() {
 	vector *v = vector_create(1, 1);
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
@@ -36,7 +36,7 @@ void test_create_02() {
 	vector_destroy(v);
 }
 
-void test_create_03() {
+static void test_create_03() {
 	vector *v = vector_create(0, 1);
 	vector *v2 = vector_create(0, 1);
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
@@ -45,7 +45,7 @@ void test_create_03() {
 	vector_destroy(v2);
 }
 
-void test_create_04() {
+static void test_create_04() {
 	int i;
 	for (i = 0; i < 100; i++) {
 		vector *v = vector_create(0, 1);
@@ -54,7 +54,7 @@ void test_create_04() {
 	}
 }
 
-void test_create_05() {
+static void test_create_05() {
 	int i;
 	vector *vs[100];
 	for (i = 0; i < 100; i++) {
@@ -66,63 +66,65 @@ void test_create_05() {
 	}
 }
 
-void test_create_06() {
+static void test_create_06() {
 	vector *v = vector_create(0, 3);
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(0, vector_capacity(v));
 	vector_add(v, 123);
-	CU_ASSERT_EQUAL(3, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(0, vector_capacity(v));
 	vector_add(v, 456);
-	CU_ASSERT_EQUAL(3, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(1, vector_capacity(v));
 	vector_add(v, 789);
-	CU_ASSERT_EQUAL(3, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(2, vector_capacity(v));
 	vector_add(v, 234);
-	CU_ASSERT_EQUAL(6, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(3, vector_capacity(v));
 	vector_destroy(v);
 }
 
-void test_create_07() {
-	vector *v = vector_create(0, 0);
+static void test_create_07() {
+	vector *v = vector_create(1, 0);
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
-	vector_add(v, 123);
 	CU_ASSERT_EQUAL(1, vector_capacity(v));
-	vector_add(v, 456);
+	vector_add(v, 123);
 	CU_ASSERT_EQUAL(2, vector_capacity(v));
+	vector_add(v, 456);
+	CU_ASSERT_EQUAL(4, vector_capacity(v));
 	vector_add(v, 789);
 	CU_ASSERT_EQUAL(4, vector_capacity(v));
 	vector_destroy(v);
 }
 
-void test_create_08() {
-	vector *v = vector_create(0, 1024 * 1024);
+static void test_create_08() {
+	vector *v = vector_create(1, 1024 * 1024);
+	size_t capacity;
 	CU_ASSERT_PTR_NOT_NULL_FATAL(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_EQUAL(1, vector_capacity(v));
 	vector_add(v, 123);
-	CU_ASSERT_EQUAL(1024 * 1024, vector_capacity(v));
+	capacity = vector_capacity(v);
+	CU_ASSERT_TRUE(capacity > 1024 * 1024);
 	vector_add(v, 456);
-	CU_ASSERT_EQUAL(1024 * 1024, vector_capacity(v));
+	CU_ASSERT_EQUAL(capacity, vector_capacity(v));
 	vector_add(v, 789);
-	CU_ASSERT_EQUAL(1024 * 1024, vector_capacity(v));
+	CU_ASSERT_EQUAL(capacity, vector_capacity(v));
 	vector_destroy(v);
 }
 
-void test_destroy_01() {
+static void test_destroy_01() {
 	vector *v = vector_create(0, 1);
 	vector_destroy(v);
 }
 
-void test_destroy_02() {
+static void test_destroy_02() {
 	vector_destroy(NULL);
 }
 
-void test_size_01() {
+static void test_size_01() {
 	vector *v = vector_create(0, 1);
 	int i;
 	CU_ASSERT_EQUAL(0, vector_size(v));
@@ -133,8 +135,8 @@ void test_size_01() {
 	vector_destroy(v);
 }
 
-void test_capacity_01() {
-	int capacity = 0;
+static void test_capacity_01() {
+	int capacity = 1;
 	vector *v = vector_create(capacity, 1);
 	int i;
 	CU_ASSERT_EQUAL(capacity, vector_capacity(v));
@@ -148,30 +150,30 @@ void test_capacity_01() {
 	vector_destroy(v);
 }
 
-void test_add_01() {
+static void test_add_01() {
 	vector *v = vector_create(0, 1);
 	CU_ASSERT_EQUAL(0, vector_size(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(0, vector_capacity(v));
 	vector_add(v, 123);
 	CU_ASSERT_EQUAL(1, vector_size(v));
-	CU_ASSERT_NOT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(1, vector_capacity(v));
 	CU_ASSERT_EQUAL(123, vector_get(v, 0));
 	vector_add(v, 456);
 	CU_ASSERT_EQUAL(2, vector_size(v));
-	CU_ASSERT_NOT_EQUAL(1, vector_capacity(v));
+	CU_ASSERT_NOT_EQUAL(2, vector_capacity(v));
 	CU_ASSERT_EQUAL(123, vector_get(v, 0));
 	CU_ASSERT_EQUAL(456, vector_get(v, 1));
 	vector_destroy(v);
 }
 
-void test_add_02() {
+static void test_add_02() {
 	vector *v = vector_create(10, 1);
 	int i;
 	for (i = 0; i < 10; i++) {
 		vector_add(v, i);
 	}
 	CU_ASSERT_EQUAL(10, vector_size(v));
-	CU_ASSERT_EQUAL(10, vector_capacity(v));
+	CU_ASSERT_TRUE(vector_capacity(v) > 10);
 	for (i = 0; i < 10; i++) {
 		CU_ASSERT_EQUAL(i, vector_get(v, i));
 	}
@@ -182,7 +184,7 @@ void test_add_02() {
 	vector_destroy(v);
 }
 
-void test_add_03() {
+static void test_add_03() {
 	vector *v = vector_create(10, 1);
 	int result = vector_add(v, INT_MAX);
 	CU_ASSERT_EQUAL(0, vector_size(v));
@@ -190,7 +192,7 @@ void test_add_03() {
 	vector_destroy(v);
 }
 
-void test_insert_01() {
+static void test_insert_01() {
 	vector *v = vector_create(0, 1);
 	vector_insert(v, 0, 123);
 	CU_ASSERT_EQUAL(1, vector_size(v));
@@ -199,7 +201,7 @@ void test_insert_01() {
 	vector_destroy(v);
 }
 
-void test_insert_02() {
+static void test_insert_02() {
 	vector *v = vector_create(100, 1);
 	int i;
 	for (i = 0; i < 100; i++) {
@@ -211,7 +213,7 @@ void test_insert_02() {
 	vector_destroy(v);
 }
 
-void test_insert_03() {
+static void test_insert_03() {
 	vector *v = vector_create(0, 1);
 	vector *v2 = vector_create(0, 1);
 	int i;
@@ -228,7 +230,7 @@ void test_insert_03() {
 	vector_destroy(v2);
 }
 
-void test_set_01() {
+static void test_set_01() {
 	vector *v = vector_create(100, 1);
 	int i;
 	for (i = 0; i < vector_capacity(v); i++) {
@@ -242,7 +244,7 @@ void test_set_01() {
 	vector_destroy(v);
 }
 
-void test_remove_01() {
+static void test_remove_01() {
 	vector *v = vector_create(1, 1);
 	int i;
 	for (i = 0; i < 100; i++) {
@@ -259,7 +261,7 @@ void test_remove_01() {
 	vector_destroy(v);
 }
 
-void test_remove_02() {
+static void test_remove_02() {
 	vector *v = vector_create(1, 1);
 	int i;
 	for (i = 0; i < 100; i++) {
@@ -274,7 +276,7 @@ void test_remove_02() {
 	vector_destroy(v);
 }
 
-void test_get_01() {
+static void test_get_01() {
 	vector *v = vector_create(100, 1);
 	int i;
 	for (i = 0; i < 50; i++) {
@@ -287,7 +289,7 @@ void test_get_01() {
 	vector_destroy(v);
 }
 
-void test_is_empty_01() {
+static void test_is_empty_01() {
 	vector *v = vector_create(0, 1);
 	CU_ASSERT_TRUE(vector_is_empty(v));
 	vector_add(v, 123);
@@ -297,13 +299,13 @@ void test_is_empty_01() {
 	vector_destroy(v);
 }
 
-void test_index_of_01() {
+static void test_index_of_01() {
 	vector *v = vector_create(0, 1);
 	CU_ASSERT_EQUAL(-1, vector_index_of(v, 123));
 	vector_destroy(v);
 }
 
-void test_index_of_02() {
+static void test_index_of_02() {
 	vector *v = vector_create(0, 1);
 	vector_add(v, 123);
 	CU_ASSERT_EQUAL(0, vector_index_of(v, 123));
@@ -314,7 +316,7 @@ void test_index_of_02() {
 	vector_destroy(v);
 }
 
-void test_index_of_03() {
+static void test_index_of_03() {
 	vector *v = vector_create(0, 1);
 	vector_add(v, 123);
 	vector_add(v, 123);
@@ -322,7 +324,7 @@ void test_index_of_03() {
 	vector_destroy(v);
 }
 
-void test_index_of_04() {
+static void test_index_of_04() {
 	vector *v = vector_create(0, 1);
 	vector_add(v, 123);
 	vector_add(v, 123);
@@ -330,7 +332,7 @@ void test_index_of_04() {
 	vector_destroy(v);
 }
 
-void test_index_of_05() {
+static void test_index_of_05() {
 	vector *v = vector_create(0, 1);
 	vector_add(v, 123);
 	vector_remove(v, 0);
@@ -338,13 +340,13 @@ void test_index_of_05() {
 	vector_destroy(v);
 }
 
-void test_contains_01() {
+static void test_contains_01() {
 	vector *v = vector_create(0, 1);
 	CU_ASSERT_FALSE(vector_contains(v, 0));
 	vector_destroy(v);
 }
 
-void test_contains_02() {
+static void test_contains_02() {
 	vector *v = vector_create(0, 1);
 	vector_add(v, 123);
 	vector_add(v, 456);
@@ -355,16 +357,16 @@ void test_contains_02() {
 	vector_destroy(v);
 }
 
-void test_clear_01() {
-	vector *v = vector_create(0, 1);
+static void test_clear_01() {
+	vector *v = vector_create(1, 1);
 	vector_clear(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
-	CU_ASSERT_EQUAL(0, vector_capacity(v));
+	CU_ASSERT_EQUAL(1, vector_capacity(v));
 	vector_destroy(v);
 }
 
-void test_clear_02() {
+static void test_clear_02() {
 	vector *v = vector_create(10, 1);
 	vector_clear(v);
 	CU_ASSERT_EQUAL(0, vector_size(v));
@@ -373,7 +375,7 @@ void test_clear_02() {
 	vector_destroy(v);
 }
 
-void test_clear_03() {
+static void test_clear_03() {
 	vector *v = vector_create(10, 1);
 	int i;
 	for (i = 0; i < 100; i++) {
@@ -383,6 +385,22 @@ void test_clear_03() {
 	CU_ASSERT_EQUAL(0, vector_size(v));
 	CU_ASSERT_TRUE(vector_is_empty(v));
 	CU_ASSERT_TRUE(vector_capacity(v) >= 100);
+	vector_destroy(v);
+}
+
+static void test_to_array_01() {
+	vector *v = vector_create(1, 1);
+	const int *array;
+	vector_add(v, 123);
+	vector_add(v, 456);
+	vector_add(v, 789);
+	CU_ASSERT_EQUAL(4, vector_capacity(v));
+	array = vector_to_array(v);
+	CU_ASSERT_EQUAL(4, vector_capacity(v));
+	CU_ASSERT_EQUAL(123, array[0]);
+	CU_ASSERT_EQUAL(456, array[1]);
+	CU_ASSERT_EQUAL(789, array[2]);
+	CU_ASSERT_EQUAL(INT_MAX, array[3]);
 	vector_destroy(v);
 }
 
@@ -424,6 +442,7 @@ int main(int argc, char *argv[]) {
 	CU_add_test(suite, "test_clear_01", test_clear_01);
 	CU_add_test(suite, "test_clear_02", test_clear_02);
 	CU_add_test(suite, "test_clear_03", test_clear_03);
+	CU_add_test(suite, "test_to_array_01", test_to_array_01);
 	CU_console_run_tests();
 	CU_cleanup_registry();
 	return EXIT_SUCCESS;
