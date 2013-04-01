@@ -140,6 +140,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a339bf4990c66374f6fdffec5ac6e31ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a339bf4990c66374f6fdffec5ac6e31ab">vector_clear</a>(v)&#160;&#160;&#160;vector_clear_internal(v)</td></tr>
 <tr class="memdesc:a339bf4990c66374f6fdffec5ac6e31ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all of the elements from specified vector.  <a href="#a339bf4990c66374f6fdffec5ac6e31ab">More...</a><br/></td></tr>
 <tr class="separator:a339bf4990c66374f6fdffec5ac6e31ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae554367d12ab56fefa7f4064a897d687"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#ae554367d12ab56fefa7f4064a897d687">vector_to_array</a>(v)&#160;&#160;&#160;vector_to_array_internal(v)</td></tr>
+<tr class="memdesc:ae554367d12ab56fefa7f4064a897d687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array containing all of the elements in specified vector in the correct order.  <a href="#ae554367d12ab56fefa7f4064a897d687">More...</a><br/></td></tr>
+<tr class="separator:ae554367d12ab56fefa7f4064a897d687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad11124d3450a718829e649cb672f1d3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#ad11124d3450a718829e649cb672f1d3b">vector_init</a>(type, invalid)</td></tr>
 <tr class="memdesc:ad11124d3450a718829e649cb672f1d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize functions of specified type vector.  <a href="#ad11124d3450a718829e649cb672f1d3b">More...</a><br/></td></tr>
 <tr class="separator:ad11124d3450a718829e649cb672f1d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -309,7 +312,7 @@ Functions</h2></td></tr>
 <p>Create a new vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">capacity</td><td>capacity of a new vector (this can be zero) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">capacity</td><td>capacity of a new vector. vector capacity is one if specified capacity is zero </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">capacity_increment</td><td>the amount by which the capacity of the vector is automatically incremented when its size becomes greater than its capacity. If the capacity_increment is equal to zero, the capacity of the vector is doubled each time it needs to grow </td></tr>
   </table>
   </dd>
@@ -638,6 +641,38 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae554367d12ab56fefa7f4064a897d687"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vector_to_array</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">v</td><td>)</td>
+          <td>&#160;&#160;&#160;vector_to_array_internal(v)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an array containing all of the elements in specified vector in the correct order. </p>
+<p>Element that position is vector size is always invalid value. For example, the following sample code is valid.</p>
+<div class="fragment"><div class="line"><a class="code" href="vector_8h.html#ad11124d3450a718829e649cb672f1d3b" title="Initialize functions of specified type vector.">vector_init</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>, <span class="charliteral">&#39;\0&#39;</span>);</div>
+<div class="line">vector *v = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(3, 1);</div>
+<div class="line"><a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v, <span class="charliteral">&#39;a&#39;</span>);</div>
+<div class="line"><a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v, <span class="charliteral">&#39;b&#39;</span>);</div>
+<div class="line"><a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v, <span class="charliteral">&#39;c&#39;</span>);</div>
+<div class="line">printf(<span class="stringliteral">&quot;%s\n&quot;</span>, <a class="code" href="vector_8h.html#ae554367d12ab56fefa7f4064a897d687" title="Returns an array containing all of the elements in specified vector in the correct order...">vector_to_array</a>(v));</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">v</td><td>specified vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array containing all of the elements in this collection, or NULL if systems does not enough memory </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="aa3e3dc9db4cf12cd922092176d02a1e9"></a>
 <div class="memitem">
@@ -696,7 +731,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 29 2013 00:16:25 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 2 2013 00:16:24 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

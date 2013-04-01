@@ -32,5 +32,10 @@ Please see API document of doc folder.
 
 ## History
 
+### Ver 0.2.0: March 31, 2013
+- Added #to_array function
+- Changed specification of vector capacity
+- Changed #vector_remove_internal to static (bug fix)
+
 ### Ver 0.1.0: March 29, 2013
-- First release.
+- First release

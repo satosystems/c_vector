@@ -42,7 +42,7 @@
  * @li Changed #vector_remove_internal to static (bug fix)
  *
  * @par Ver 0.1.0: March 29, 2013
- * @li First release.
+ * @li First release
  */
 
 /**
