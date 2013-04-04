@@ -143,6 +143,12 @@ Macros</h2></td></tr>
 <tr class="memitem:ae554367d12ab56fefa7f4064a897d687"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#ae554367d12ab56fefa7f4064a897d687">vector_to_array</a>(v)&#160;&#160;&#160;vector_to_array_internal(v)</td></tr>
 <tr class="memdesc:ae554367d12ab56fefa7f4064a897d687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array containing all of the elements in specified vector in the correct order.  <a href="#ae554367d12ab56fefa7f4064a897d687">More...</a><br/></td></tr>
 <tr class="separator:ae554367d12ab56fefa7f4064a897d687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b6e69041b33a65fa764cbaa027bcb8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a3b6e69041b33a65fa764cbaa027bcb8d">vector_append</a>(v, array)&#160;&#160;&#160;vector_append_internal(v, array)</td></tr>
+<tr class="memdesc:a3b6e69041b33a65fa764cbaa027bcb8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the vector representation of the type array argument to specified vector.  <a href="#a3b6e69041b33a65fa764cbaa027bcb8d">More...</a><br/></td></tr>
+<tr class="separator:a3b6e69041b33a65fa764cbaa027bcb8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12f95baf9098d9efb4fbf46a3b7eaec5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5">vector_concat</a>(v_to, v_from)&#160;&#160;&#160;vector_concat_internal(v_to, v_from)</td></tr>
+<tr class="memdesc:a12f95baf9098d9efb4fbf46a3b7eaec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates the v_from vector to the end of v_to vector.  <a href="#a12f95baf9098d9efb4fbf46a3b7eaec5">More...</a><br/></td></tr>
+<tr class="separator:a12f95baf9098d9efb4fbf46a3b7eaec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad11124d3450a718829e649cb672f1d3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#ad11124d3450a718829e649cb672f1d3b">vector_init</a>(type, invalid)</td></tr>
 <tr class="memdesc:ad11124d3450a718829e649cb672f1d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize functions of specified type vector.  <a href="#ad11124d3450a718829e649cb672f1d3b">More...</a><br/></td></tr>
 <tr class="separator:ad11124d3450a718829e649cb672f1d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,6 +205,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3b6e69041b33a65fa764cbaa027bcb8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vector_append</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">v, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">array&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;vector_append_internal(v, array)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Appends the vector representation of the type array argument to specified vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">v</td><td>specified vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">array</td><td>the type array to be appended. This array MUST be terminated invalid value of specified vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a appended vector that is v </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a457150bcb3c132256b5e5728af8b09c9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -246,6 +288,42 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a12f95baf9098d9efb4fbf46a3b7eaec5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vector_concat</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">v_to, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">v_from&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;vector_concat_internal(v_to, v_from)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Concatenates the v_from vector to the end of v_to vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">v_to</td><td>specified vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">v_from</td><td>the vector that is concatenated to the end of specified vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a concatenated vector that is v_to </dd></dl>
 
 </div>
 </div>
@@ -731,7 +809,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 2 2013 00:16:24 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 4 2013 21:19:21 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

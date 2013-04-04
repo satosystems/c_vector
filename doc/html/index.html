@@ -496,55 +496,130 @@ These restrictions are due to the need to respond any type at this library.</dd>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v);</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;}</div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    CU_pSuite suite;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    CU_initialize_registry();</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    suite = CU_add_suite(<span class="stringliteral">&quot;tests&quot;</span>, NULL, NULL);</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_01&quot;</span>, test_create_01);</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_02&quot;</span>, test_create_02);</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_03&quot;</span>, test_create_03);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_04&quot;</span>, test_create_04);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_05&quot;</span>, test_create_05);</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_05&quot;</span>, test_create_05);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_06&quot;</span>, test_create_06);</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_07&quot;</span>, test_create_07);</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_08&quot;</span>, test_create_08);</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_destroy_01&quot;</span>, test_destroy_01);</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_destroy_02&quot;</span>, test_destroy_02);</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_size_01&quot;</span>, test_size_01);</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_capacity_01&quot;</span>, test_capacity_01);</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_01&quot;</span>, test_add_01);</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_02&quot;</span>, test_add_02);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_03&quot;</span>, test_add_03);</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_01&quot;</span>, test_insert_01);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_02&quot;</span>, test_insert_02);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_03&quot;</span>, test_insert_03);</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_set_01&quot;</span>, test_set_01);</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_remove_01&quot;</span>, test_remove_01);</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_remove_02&quot;</span>, test_remove_02);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_get_01&quot;</span>, test_get_01);</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_is_empty_01&quot;</span>, test_is_empty_01);</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_01&quot;</span>, test_index_of_01);</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_02&quot;</span>, test_index_of_02);</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_03&quot;</span>, test_index_of_03);</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_04&quot;</span>, test_index_of_04);</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_05&quot;</span>, test_index_of_05);</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_contains_01&quot;</span>, test_contains_01);</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_contains_02&quot;</span>, test_contains_02);</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_01&quot;</span>, test_clear_01);</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_02&quot;</span>, test_clear_02);</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_03&quot;</span>, test_clear_03);</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_to_array_01&quot;</span>, test_to_array_01);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    CU_console_run_tests();</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    CU_cleanup_registry();</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;}</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> test_append_01() {</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    vector *v = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(10, 1);</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordtype">int</span> array[] = { 1, 2, 3, INT_MAX };</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <a class="code" href="vector_8h.html#a3b6e69041b33a65fa764cbaa027bcb8d" title="Appends the vector representation of the type array argument to specified vector.">vector_append</a>(v, array);</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    CU_ASSERT_EQUAL(3, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v));</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    CU_ASSERT_FALSE(<a class="code" href="vector_8h.html#afa3beaad1b95b2a7c41306a676105cf2" title="Tests if specified vector has no components.">vector_is_empty</a>(v));</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <a class="code" href="vector_8h.html#a3b6e69041b33a65fa764cbaa027bcb8d" title="Appends the vector representation of the type array argument to specified vector.">vector_append</a>(v, array);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    CU_ASSERT_EQUAL(6, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v));</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    CU_ASSERT_EQUAL(1, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 0));</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    CU_ASSERT_EQUAL(2, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 1));</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    CU_ASSERT_EQUAL(3, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 2));</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    CU_ASSERT_EQUAL(1, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 3));</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    CU_ASSERT_EQUAL(2, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 4));</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    CU_ASSERT_EQUAL(3, <a class="code" href="vector_8h.html#a7d0c9a35ec27a0d4855f1d6ee257f542" title="Returns the element at the specified position in specified vector.">vector_get</a>(v, 5));</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;}</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> test_concat_01() {</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    vector *v1 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    vector *v2 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <a class="code" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5" title="Concatenates the v_from vector to the end of v_to vector.">vector_concat</a>(v1, v2);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    CU_ASSERT_EQUAL(0, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v1));</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    CU_ASSERT_TRUE(<a class="code" href="vector_8h.html#afa3beaad1b95b2a7c41306a676105cf2" title="Tests if specified vector has no components.">vector_is_empty</a>(v1));</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    CU_ASSERT_EQUAL(1, <a class="code" href="vector_8h.html#a457150bcb3c132256b5e5728af8b09c9" title="Returns the current capacity of specified vector.">vector_capacity</a>(v1));</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v1);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v2);</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;}</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> test_concat_02() {</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    vector *v1 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    vector *v2 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v1, 1);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <a class="code" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5" title="Concatenates the v_from vector to the end of v_to vector.">vector_concat</a>(v1, v2);</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    CU_ASSERT_EQUAL(1, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v1));</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    CU_ASSERT_FALSE(<a class="code" href="vector_8h.html#afa3beaad1b95b2a7c41306a676105cf2" title="Tests if specified vector has no components.">vector_is_empty</a>(v1));</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    CU_ASSERT_EQUAL(2, <a class="code" href="vector_8h.html#a457150bcb3c132256b5e5728af8b09c9" title="Returns the current capacity of specified vector.">vector_capacity</a>(v1));</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v1);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v2);</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;}</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> test_concat_03() {</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    vector *v1 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    vector *v2 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v2, 1);</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <a class="code" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5" title="Concatenates the v_from vector to the end of v_to vector.">vector_concat</a>(v1, v2);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    CU_ASSERT_EQUAL(1, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v1));</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    CU_ASSERT_FALSE(<a class="code" href="vector_8h.html#afa3beaad1b95b2a7c41306a676105cf2" title="Tests if specified vector has no components.">vector_is_empty</a>(v1));</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    CU_ASSERT_EQUAL(2, <a class="code" href="vector_8h.html#a457150bcb3c132256b5e5728af8b09c9" title="Returns the current capacity of specified vector.">vector_capacity</a>(v1));</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v1);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v2);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;}</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> test_concat_04() {</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    vector *v1 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    vector *v2 = <a class="code" href="vector_8h.html#a23905dc479d0ce3df1b3039f5ed5f436" title="Create a new vector.">vector_create</a>(1, 1);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v1, 1);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    <a class="code" href="vector_8h.html#ade415df72a1ec4746ed475a85afa4ccc" title="Appends the specified element to the end of specified vector.">vector_add</a>(v2, 2);</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <a class="code" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5" title="Concatenates the v_from vector to the end of v_to vector.">vector_concat</a>(v1, v2);</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    CU_ASSERT_EQUAL(2, <a class="code" href="vector_8h.html#aa4a49dba79aeb400b83c08ab1cc8ecad" title="Returns the number of components in specified vector.">vector_size</a>(v1));</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    CU_ASSERT_FALSE(<a class="code" href="vector_8h.html#afa3beaad1b95b2a7c41306a676105cf2" title="Tests if specified vector has no components.">vector_is_empty</a>(v1));</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    CU_ASSERT_EQUAL(3, <a class="code" href="vector_8h.html#a457150bcb3c132256b5e5728af8b09c9" title="Returns the current capacity of specified vector.">vector_capacity</a>(v1));</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v1);</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    <a class="code" href="vector_8h.html#a2acb0319289ebfa46914d1d3eb98aa1a" title="Destroy specified vector.">vector_destroy</a>(v2);</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;}</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    CU_pSuite suite;</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    CU_initialize_registry();</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    suite = CU_add_suite(<span class="stringliteral">&quot;tests&quot;</span>, NULL, NULL);</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_01&quot;</span>, test_create_01);</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_02&quot;</span>, test_create_02);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_03&quot;</span>, test_create_03);</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_04&quot;</span>, test_create_04);</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_05&quot;</span>, test_create_05);</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_05&quot;</span>, test_create_05);</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_06&quot;</span>, test_create_06);</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_07&quot;</span>, test_create_07);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_create_08&quot;</span>, test_create_08);</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_destroy_01&quot;</span>, test_destroy_01);</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_destroy_02&quot;</span>, test_destroy_02);</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_size_01&quot;</span>, test_size_01);</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_capacity_01&quot;</span>, test_capacity_01);</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_01&quot;</span>, test_add_01);</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_02&quot;</span>, test_add_02);</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_add_03&quot;</span>, test_add_03);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_01&quot;</span>, test_insert_01);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_02&quot;</span>, test_insert_02);</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_insert_03&quot;</span>, test_insert_03);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_set_01&quot;</span>, test_set_01);</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_remove_01&quot;</span>, test_remove_01);</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_remove_02&quot;</span>, test_remove_02);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_get_01&quot;</span>, test_get_01);</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_is_empty_01&quot;</span>, test_is_empty_01);</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_01&quot;</span>, test_index_of_01);</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_02&quot;</span>, test_index_of_02);</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_03&quot;</span>, test_index_of_03);</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_04&quot;</span>, test_index_of_04);</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_index_of_05&quot;</span>, test_index_of_05);</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_contains_01&quot;</span>, test_contains_01);</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_contains_02&quot;</span>, test_contains_02);</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_01&quot;</span>, test_clear_01);</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_02&quot;</span>, test_clear_02);</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_clear_03&quot;</span>, test_clear_03);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_to_array_01&quot;</span>, test_to_array_01);</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_append_01&quot;</span>, test_append_01);</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_concat_01&quot;</span>, test_concat_01);</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_concat_02&quot;</span>, test_concat_02);</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_concat_03&quot;</span>, test_concat_03);</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    CU_add_test(suite, <span class="stringliteral">&quot;test_concat_04&quot;</span>, test_concat_04);</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    CU_console_run_tests();</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    CU_cleanup_registry();</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;}</div>
 </div><!-- fragment --><h1><a class="anchor" id="history_sec"></a>
 History</h1>
+<dl class="section user"><dt>Ver 0.3.0: April 4, 2013</dt><dd><ul>
+<li>Added <a class="el" href="vector_8h.html#a3b6e69041b33a65fa764cbaa027bcb8d" title="Appends the vector representation of the type array argument to specified vector.">vector_append</a> function </li>
+<li>Added <a class="el" href="vector_8h.html#a12f95baf9098d9efb4fbf46a3b7eaec5" title="Concatenates the v_from vector to the end of v_to vector.">vector_concat</a> function</li>
+</ul>
+</dd></dl>
 <dl class="section user"><dt>Ver 0.2.0: March 31, 2013</dt><dd><ul>
-<li>Added #to_array function </li>
+<li>Added <a class="el" href="vector_8h.html#ae554367d12ab56fefa7f4064a897d687" title="Returns an array containing all of the elements in specified vector in the correct order...">vector_to_array</a> function </li>
 <li>Changed specification of vector capacity </li>
-<li>Changed #vector_remove_internal to static (bug fix)</li>
+<li>Changed vector_remove_internal to static (bug fix)</li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Ver 0.1.0: March 29, 2013</dt><dd><ul>
@@ -554,7 +629,7 @@ History</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 2 2013 00:16:24 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 4 2013 21:19:21 for Yet another vector library for C language by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

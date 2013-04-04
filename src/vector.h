@@ -36,10 +36,14 @@
  *
  * @section history_sec History
  *
+ * @par Ver 0.3.0: April 4, 2013
+ * @li Added #vector_append function
+ * @li Added #vector_concat function
+ *
  * @par Ver 0.2.0: March 31, 2013
- * @li Added #to_array function
+ * @li Added #vector_to_array function
  * @li Changed specification of vector capacity
- * @li Changed #vector_remove_internal to static (bug fix)
+ * @li Changed vector_remove_internal to static (bug fix)
  *
  * @par Ver 0.1.0: March 29, 2013
  * @li First release
@@ -252,6 +256,25 @@ static void *vector_alloc(void *ptr, size_t size);
 #define vector_to_array(v) vector_to_array_internal(v)
 
 /**
+ * Appends the vector representation of the type array argument to specified vector.
+ *
+ * @param [in,out] v specified vector
+ * @param [in] array the type array to be appended.
+ * This array MUST be terminated invalid value of specified vector
+ * @return a appended vector that is v
+ */
+#define vector_append(v, array) vector_append_internal(v, array)
+
+/**
+ * Concatenates the v_from vector to the end of v_to vector.
+ *
+ * @param [in,out] v_to specified vector
+ * @param [in] v_from the vector that is concatenated to the end of specified vector
+ * @return a concatenated vector that is v_to
+ */
+#define vector_concat(v_to, v_from) vector_concat_internal(v_to, v_from)
+
+/**
  * Initialize functions of specified type vector.
  *
  * You have to write in your source code like the following:
@@ -365,6 +388,18 @@ static void *vector_alloc(void *ptr, size_t size);
 	\
 	static const type *vector_to_array_internal(vector *v) { \
 		return (const type *) v->elements; \
+	} \
+	\
+	static const vector *vector_append_internal(vector *v, type *array) { \
+		size_t i; \
+		for (i = 0; array[i] != invalid; i++) { \
+			vector_add(v, array[i]); \
+		} \
+		return v; \
+	} \
+	\
+	static const vector *vector_concat_internal(vector *v_to, vector *v_from) { \
+		return vector_append(v_to, v_from->elements); \
 	}
 
 #endif

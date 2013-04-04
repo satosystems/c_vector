@@ -404,6 +404,71 @@ static void test_to_array_01() {
 	vector_destroy(v);
 }
 
+static void test_append_01() {
+	vector *v = vector_create(10, 1);
+	int array[] = { 1, 2, 3, INT_MAX };
+	vector_append(v, array);
+	CU_ASSERT_EQUAL(3, vector_size(v));
+	CU_ASSERT_FALSE(vector_is_empty(v));
+	vector_append(v, array);
+	CU_ASSERT_EQUAL(6, vector_size(v));
+	CU_ASSERT_EQUAL(1, vector_get(v, 0));
+	CU_ASSERT_EQUAL(2, vector_get(v, 1));
+	CU_ASSERT_EQUAL(3, vector_get(v, 2));
+	CU_ASSERT_EQUAL(1, vector_get(v, 3));
+	CU_ASSERT_EQUAL(2, vector_get(v, 4));
+	CU_ASSERT_EQUAL(3, vector_get(v, 5));
+	vector_destroy(v);
+}
+
+static void test_concat_01() {
+	vector *v1 = vector_create(1, 1);
+	vector *v2 = vector_create(1, 1);
+	vector_concat(v1, v2);
+	CU_ASSERT_EQUAL(0, vector_size(v1));
+	CU_ASSERT_TRUE(vector_is_empty(v1));
+	CU_ASSERT_EQUAL(1, vector_capacity(v1));
+	vector_destroy(v1);
+	vector_destroy(v2);
+}
+
+static void test_concat_02() {
+	vector *v1 = vector_create(1, 1);
+	vector *v2 = vector_create(1, 1);
+	vector_add(v1, 1);
+	vector_concat(v1, v2);
+	CU_ASSERT_EQUAL(1, vector_size(v1));
+	CU_ASSERT_FALSE(vector_is_empty(v1));
+	CU_ASSERT_EQUAL(2, vector_capacity(v1));
+	vector_destroy(v1);
+	vector_destroy(v2);
+}
+
+static void test_concat_03() {
+	vector *v1 = vector_create(1, 1);
+	vector *v2 = vector_create(1, 1);
+	vector_add(v2, 1);
+	vector_concat(v1, v2);
+	CU_ASSERT_EQUAL(1, vector_size(v1));
+	CU_ASSERT_FALSE(vector_is_empty(v1));
+	CU_ASSERT_EQUAL(2, vector_capacity(v1));
+	vector_destroy(v1);
+	vector_destroy(v2);
+}
+
+static void test_concat_04() {
+	vector *v1 = vector_create(1, 1);
+	vector *v2 = vector_create(1, 1);
+	vector_add(v1, 1);
+	vector_add(v2, 2);
+	vector_concat(v1, v2);
+	CU_ASSERT_EQUAL(2, vector_size(v1));
+	CU_ASSERT_FALSE(vector_is_empty(v1));
+	CU_ASSERT_EQUAL(3, vector_capacity(v1));
+	vector_destroy(v1);
+	vector_destroy(v2);
+}
+
 int main(int argc, char *argv[]) {
 	CU_pSuite suite;
 	CU_initialize_registry();
@@ -443,6 +508,11 @@ int main(int argc, char *argv[]) {
 	CU_add_test(suite, "test_clear_02", test_clear_02);
 	CU_add_test(suite, "test_clear_03", test_clear_03);
 	CU_add_test(suite, "test_to_array_01", test_to_array_01);
+	CU_add_test(suite, "test_append_01", test_append_01);
+	CU_add_test(suite, "test_concat_01", test_concat_01);
+	CU_add_test(suite, "test_concat_02", test_concat_02);
+	CU_add_test(suite, "test_concat_03", test_concat_03);
+	CU_add_test(suite, "test_concat_04", test_concat_04);
 	CU_console_run_tests();
 	CU_cleanup_registry();
 	return EXIT_SUCCESS;
