@@ -32,6 +32,9 @@ Please see API document of doc folder.
 
 ## History
 
+### Ver 0.3.1: April 7, 2013
+- Fixed a vector initialization bug
+
 ### Ver 0.3.0: April 4, 2013
 - Added #vector_append function
 - Added #vector_concat function

@@ -36,6 +36,9 @@
  *
  * @section history_sec History
  *
+ * @par Ver 0.3.1: April 7, 2013
+ * @li Fixed a vector initialization bug
+ *
  * @par Ver 0.3.0: April 4, 2013
  * @li Added #vector_append function
  * @li Added #vector_concat function
@@ -322,6 +325,9 @@ static void *vector_alloc(void *ptr, size_t size);
 				size_t i; \
 				for (i = v->capacity; i < capacity; i++) { \
 					v->elements[i] = invalid; \
+				} \
+				if (v->size == 0) { \
+					v->elements[0] = invalid; \
 				} \
 				if (capacity != 0) { \
 					v->capacity = capacity; \
